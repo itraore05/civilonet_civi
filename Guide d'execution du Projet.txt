@@ -1,0 +1,110 @@
+1. 📦 PRÉREQUIS
+a. Installer WampServer (version recommandée)
+Télécharger depuis : https://www.wampserver.com/
+
+Choisir la dernière version avec :
+
+PHP 8.3.14
+
+MySQL 8.x ou 5.7+
+
+Installer également les Visual C++ Redistributable recommandés (liens disponibles sur le site de Wamp).
+
+b. Ajouter PHP à la variable d’environnement système
+Aller dans le dossier de Wamp, exemple :
+C:\wamp64\bin\php\php8.3.14
+
+Copier ce chemin.
+
+Aller dans :
+
+Panneau de configuration → Système → Paramètres système avancés
+
+Onglet Variables d’environnement
+
+Dans Path, cliquer sur "Modifier", puis "Nouveau", et coller le chemin.
+
+
+2. 💡 INSTALLER COMPOSER
+
+Télécharger depuis : https://getcomposer.org/
+
+Lors de l’installation :
+
+Lorsque demandé, sélectionner le chemin PHP de Wamp (copié à l'étape précédente).
+
+Terminer l’installation.
+
+3. 💻 CONFIGURATION DU PROJET DANS VS CODE
+Ouvrir le dossier du projet cloné dans VS Code.
+
+Exécuter les commandes suivantes dans le terminal :
+
+npm install
+composer install
+cp .env.example .env
+php artisan key:generate
+
+
+4. ⚙️ CONFIGURER LE FICHIER .env
+Ouvrir le fichier .env dans VS Code.
+
+Modifier les paramètres de base de données comme suit :
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=civilonet   # Assurez-vous d’avoir créé cette base dans phpMyAdmin
+DB_USERNAME=root
+DB_PASSWORD=             # (laisser vide si pas de mot de passe Wamp)
+
+5. 🗄️ MIGRATION DE LA BASE DE DONNÉES
+
+Exécuter dans le terminal :
+
+php artisan config:clear
+php artisan migrate
+
+------------ En cas de besoin, pour tout réinitialiser :
+php artisan migrate:fresh
+
+6. 🚀 LANCEMENT DU PROJET
+
+php artisan serve
+
+----Accéder à l'application sur http://127.0.0.1:8000
+Interface d’administration :
+http://127.0.0.1:8000/admin
+
+7. 🌐 LANCER LA COMPILATION DES ASSETS FRONTEND
+        npm run dev
+---------------------------------------------------------------
+
+
+🔁 POUR UN NOUVEAU CLONE DU PROJET
+
+Voici le rappel des commandes à exécuter après avoir cloné à nouveau :
+
+npm install
+composer install
+cp .env.example .env
+php artisan key:generate
+# Modifier .env : passer à MySQL et configurer DB_DATABASE = civilonet
+php artisan migrate
+php artisan serve
+npm run dev
+-----------------------------------------------------------------------------------
+
+📝 Remarques importantes :
+
+Ne pas oublier de créer la base de données civilonet dans phpMyAdmin avant de lancer les migrations.
+
+En cas de changement majeur, utiliser php artisan migrate:fresh pour repartir d’une base propre.
+
+Si npm run dev échoue, essayer npm install puis relancer.
+
+
+
+
+
+
