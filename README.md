@@ -11,7 +11,7 @@
 > Application web qui permet à un citoyen de **demander en ligne un acte de naissance, de mariage ou de décès**, de **payer par mobile money** et de **télécharger son document**, pendant que l'administration traite les demandes depuis un **back-office**.
 > **Projet académique réalisé en équipe** — Licence Informatique & Sciences du Numérique (UVCI), 2025.
 
-> ⚠️ **Prototype pédagogique, non officiel.** CiviloNet n'a aucun lien avec l'administration ivoirienne. Les documents générés portent la mention « SPÉCIMEN — sans valeur légale ».
+> ⚠️ **Prototype pédagogique, non officiel.** CiviloNet n'a aucun lien avec l'administration ivoirienne. Les documents générés par l'application sont fictifs et n'ont **aucune valeur légale**.
 
 ---
 
@@ -67,7 +67,7 @@ app/
 resources/views/
 ├── citoyen/              # Tableau de bord et suivi des demandes
 ├── demandes/             # Formulaires par type d'acte
-└── pdf/                  # Gabarits des actes (spécimens)
+└── pdf/                  # Gabarits PDF des actes (fictifs)
 database/migrations/      # Schéma : demandes, actes, paiement, notifications, statistiques
 ```
 
@@ -87,7 +87,7 @@ php artisan key:generate
 Dans `.env` :
 
 - configurer MySQL (`DB_CONNECTION=mysql`, `DB_DATABASE=civilonet`…) après avoir créé la base ;
-- renseigner les identifiants de **votre** compte de test CinetPay (`CINETPAY_TEST_SITE_ID`, `CINETPAY_TEST_API_KEY`).
+- pour tester le paiement, renseigner les identifiants de **votre** compte de test CinetPay (`CINETPAY_TEST_MODE`, `CINETPAY_TEST_SITE_ID`, `CINETPAY_TEST_API_KEY`).
 
 ```bash
 php artisan migrate
